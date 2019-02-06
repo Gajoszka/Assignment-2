@@ -1,4 +1,4 @@
-package BubbleSort;
+package pl.aga.bubleSort;
 
 import java.util.Scanner;
 
