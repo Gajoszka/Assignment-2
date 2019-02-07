@@ -9,6 +9,7 @@ public class Precision {
 	BigDecimal x;
 	BigDecimal x1;
 	BigDecimal x2;
+	int scale=2;
 
 	@SuppressWarnings("resource")
 	public static void main(String[] args) {
@@ -48,7 +49,8 @@ public class Precision {
 	
 	void accuracy() {
 		System.out.println("Hello");
-		x = new BigDecimal(5.7888888).setScale(3);
+		scale = scanner.nextInt();
+		
 	}
 	
 	public void equation() {
@@ -69,12 +71,12 @@ public class Precision {
 			System.out.println("No results");
 		}
 		if (delta == 0) {
-			x = new BigDecimal(-b / 2 * a).setScale(3);
+			x = new BigDecimal(-b / 2 * a).setScale(scale);
 			System.out.println("x = " + x);
 		}
 		if (delta > 0) {
-			x1 = new BigDecimal(((-b) - delta) / 4 * a).setScale(1);
-			x2 = new BigDecimal(((-b) + delta) / 4 * a).setScale(2);
+			x1 = new BigDecimal(((-b) - delta) / 4 * a).setScale(scale);
+			x2 = new BigDecimal(((-b) + delta) / 4 * a).setScale(scale);
 			System.out.println("x1 = " + x1);
 			System.out.println("x2 = " + x2);
 		}
