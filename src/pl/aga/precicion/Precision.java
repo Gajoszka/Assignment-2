@@ -1,6 +1,7 @@
 package pl.aga.precicion;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Scanner;
 
 public class Precision {
@@ -14,13 +15,14 @@ public class Precision {
 	@SuppressWarnings("resource")
 	public static void main(String[] args) {
 		int select;
+		Precision ob = new Precision();
 		do {
 			System.out.println("This is an application that performs simple tasks. Here is a list of them.");
 			String[] menu = { "1. Declare accuracy", "2. Equation", "3. Bubble sort", "4. Exit" };
 			for (String x : menu) {
 				System.out.println(x);
 			}
-			Precision ob = new Precision();
+			
 			select = ob.scanner.nextInt();
 
 			switch (select) {
@@ -69,12 +71,14 @@ public class Precision {
 			System.out.println("No results");
 		}
 		if (delta == 0) {
-			x = new BigDecimal(-b / 2 * a).setScale(scale);
+			x = new BigDecimal(-b / 2 * a).setScale(scale,RoundingMode.HALF_UP);
+			
 			System.out.println("x = " + x);
 		}
+
 		if (delta > 0) {
-			x1 = new BigDecimal(((-b) - delta) / 4 * a).setScale(scale);
-			x2 = new BigDecimal(((-b) + delta) / 4 * a).setScale(scale);
+			x1 = new BigDecimal(((-b) - delta) / 4 * a).setScale(scale,RoundingMode.HALF_UP);
+			x2 = new BigDecimal(((-b) + delta) / 4 * a).setScale(scale,RoundingMode.HALF_UP);
 			System.out.println("x1 = " + x1);
 			System.out.println("x2 = " + x2);
 		}
