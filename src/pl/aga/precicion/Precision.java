@@ -48,6 +48,7 @@ public class Precision {
 	
 	void accuracy() {
 		System.out.println("Hello");
+		x = new BigDecimal(5.7888888).setScale(3);
 	}
 	
 	public void equation() {
