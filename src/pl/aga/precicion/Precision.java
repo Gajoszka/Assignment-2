@@ -1,13 +1,14 @@
 package pl.aga.precicion;
 
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class Precision {
 	
 	public Scanner scanner = new Scanner(System.in);
-	double x;
-	double x1;
-	double x2;
+	BigDecimal x;
+	BigDecimal x1;
+	BigDecimal x2;
 
 	@SuppressWarnings("resource")
 	public static void main(String[] args) {
@@ -67,12 +68,12 @@ public class Precision {
 			System.out.println("No results");
 		}
 		if (delta == 0) {
-			x = (-b) / 2 * a;
+			x = new BigDecimal(-b / 2 * a).setScale(3);
 			System.out.println("x = " + x);
 		}
 		if (delta > 0) {
-			x1 = ((-b) - delta) / 4 * a;
-			x2 = ((-b) + delta) / 4 * a;
+			x1 = new BigDecimal(((-b) - delta) / 4 * a).setScale(1);
+			x2 = new BigDecimal(((-b) + delta) / 4 * a).setScale(2);
 			System.out.println("x1 = " + x1);
 			System.out.println("x2 = " + x2);
 		}
