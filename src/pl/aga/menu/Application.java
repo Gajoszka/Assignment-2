@@ -7,7 +7,6 @@ public class Application {
 	public Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
-
 		Application app = new Application();
 		int opt = 0;
 		while (opt != 4) {
