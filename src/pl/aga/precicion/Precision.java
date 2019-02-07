@@ -4,12 +4,12 @@ import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class Precision {
-	
+
 	public Scanner scanner = new Scanner(System.in);
 	BigDecimal x;
 	BigDecimal x1;
 	BigDecimal x2;
-	int scale=2;
+	int scale = 2;
 
 	@SuppressWarnings("resource")
 	public static void main(String[] args) {
@@ -20,39 +20,38 @@ public class Precision {
 			for (String x : menu) {
 				System.out.println(x);
 			}
-		    Scanner scanner = new Scanner(System.in);
-		    select = scanner.nextInt();
-		    Precision ob = new Precision();
+			Precision ob = new Precision();
+			select = ob.scanner.nextInt();
 
-		    switch (select) {
-		        case 1:
-		            ob.accuracy();
-		            break;
-		        case 2:
-		            ob.equation();
-		            break;
-		        case 3:
-		            ob.bubble();
-		            break;
-		        case 4:
-		        	System.exit(0);
-		        	 break;
-				default:
-					if(select > 4) {
-						System.out.println("Wrong option. Try again");
-		    }
-		    }
-		    
+			switch (select) {
+			case 1:
+				ob.accuracy();
+				break;
+			case 2:
+				ob.equation();
+				break;
+			case 3:
+				ob.bubble();
+				break;
+			case 4:
+				System.exit(0);
+				break;
+			default:
+				if (select > 4) {
+					System.out.println("Wrong option. Try again");
+				}
+			}
+
 		} while (select > 0);
 		System.out.println("Closing the program");
 	}
-	
+
 	void accuracy() {
 		System.out.println("Hello");
 		scale = scanner.nextInt();
-		
+
 	}
-	
+
 	public void equation() {
 		System.out.println("Insert factors for quadratic equation");
 		System.out.println("f(x) = a * x^2 + b * x + c");
@@ -65,7 +64,6 @@ public class Precision {
 		System.out.println();
 		System.out.println("f(x) = " + a + " * x^2" + " + " + b + " * x" + " + " + c);
 		double delta = Math.pow(b, 2) - 4 * a * c;
-		
 
 		if (delta < 0) {
 			System.out.println("No results");
@@ -81,7 +79,7 @@ public class Precision {
 			System.out.println("x2 = " + x2);
 		}
 	}
-	
+
 	void sort(int... id) {
 
 		int l = id.length;
@@ -105,9 +103,9 @@ public class Precision {
 		System.out.println();
 
 	}
-	
+
 	public void bubble() {
-		
+
 		System.out.println("Input digits from your student ID to get them sorted in ascending order");
 		System.out.print("1:");
 		int a = scanner.nextInt();
@@ -127,7 +125,7 @@ public class Precision {
 		System.out.println("ID number is " + a + "" + b + "" + c + "" + d + "" + e + "" + f + "" + g);
 
 		int[] id = { a, b, c, d, e, f, g };
-		sort( a, b, c, d, e, f, g);
+		sort(a, b, c, d, e, f, g);
 		System.out.println("ID digits after sorting");
 		printarray(id);
 	}
