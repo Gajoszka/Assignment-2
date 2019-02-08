@@ -1,60 +1,121 @@
-package pl.aga.precicion;
+package precision;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Scanner;
 
 public class Precision {
-
+	
 	public Scanner scanner = new Scanner(System.in);
 	BigDecimal x;
 	BigDecimal x1;
 	BigDecimal x2;
-	int scale = 2;
+	BigDecimal y;
+	BigDecimal z;
+	BigDecimal n;
+	
+	int scale = 0;
 
 	@SuppressWarnings("resource")
 	public static void main(String[] args) {
 		int select;
 		Precision ob = new Precision();
+
 		do {
 			System.out.println("This is an application that performs simple tasks. Here is a list of them.");
-			String[] menu = { "1. Declare accuracy", "2. Equation", "3. Bubble sort", "4. Exit" };
+			String[] menu = { "1. Declare accuracy", "2. Linear Equation with one unknown", "3. Linear Equation with two unknowns", "4. Quadratic equation", "5. Bubble sort", "6. Exit" };
 			for (String x : menu) {
 				System.out.println(x);
 			}
-			
-			select = ob.scanner.nextInt();
-
-			switch (select) {
-			case 1:
-				ob.accuracy();
-				break;
-			case 2:
-				ob.equation();
-				break;
-			case 3:
-				ob.bubble();
-				break;
-			case 4:
-				System.exit(0);
-				break;
-			default:
-				if (select > 4) {
-					System.out.println("Wrong option. Try again");
-				}
-			}
-
+		    Scanner scanner = new Scanner(System.in);
+		    select = scanner.nextInt();
+		    
+		    switch (select) {
+		        case 1:
+		            ob.accuracy();
+		            break;
+		        case 2:
+		            ob.unknown();
+		            break;
+		        case 3:
+		            ob.unknowkns();
+		            break;
+		        case 4:
+		        	ob.quadratic();
+		        	break;
+		        case 5:
+		        	ob.Bubble();
+		        	break;
+		        case 6:
+		        	System.out.println("Closing the program");
+		        	System.exit(0);
+		        	 break;
+				default:
+					if(select > 4) {
+						System.out.println("Wrong option. Try again");
+		    }
+		    }
+		    
 		} while (select > 0);
-		System.out.println("Closing the program");
 	}
-
+	
 	void accuracy() {
-		System.out.println("Hello");
+		System.out.println("Choose number of decimal places of the result of equation from 1 to 5");
 		scale = scanner.nextInt();
-
+		if(scale > 5) {
+			System.out.println("Wrong option");
+		}
+	}
+	
+	void unknown() {
+		System.out.println("a*x + b = c");
+		System.out.println("Input a factor");
+		double a = scanner.nextDouble();
+		System.out.println("Input b factor");
+		double b = scanner.nextDouble();
+		System.out.println("Input c factor");
+		double c = scanner.nextDouble();
+		System.out.println(a + "*x" + " + " + b + "*y" + " = " + c);
+		
+		n = new BigDecimal((c - b)/a).setScale(scale, RoundingMode.HALF_UP);
+		
+		System.out.println("x = " + n);
+	}
+	
+	void unknowkns() {
+		
+		System.out.println("a*x + b*y = c");
+		System.out.println("d*x + e*y = f");
+		System.out.println("Input a factor");
+		double a = scanner.nextDouble();
+		System.out.println("Input b factor");
+		double b = scanner.nextDouble();
+		System.out.println("Input c factor");
+		double c = scanner.nextDouble();
+		System.out.println("Input d factor");
+		double d = scanner.nextDouble();
+		System.out.println("Input e factor");
+		double e = scanner.nextDouble();
+		System.out.println("Input f factor");
+		double f = scanner.nextDouble();
+		
+		System.out.println(a + "*x" + " + " + b + "*y" + " = " + c);
+		System.out.println(d + "*x" + " + " + e + "*y" + " = " + f);
+		
+		double w = (a*e - b*d);
+		
+		if(w != 0) {
+			z = new BigDecimal((c*e - b*f) / w).setScale(scale, RoundingMode.HALF_UP);
+			y = new BigDecimal((a*f - d*c) / w).setScale(scale, RoundingMode.HALF_UP);
+		
+		System.out.println("x = " + z);
+		System.out.println("y = " + y);
+		}
+	
 	}
 
-	public void equation() {
+	
+	public void quadratic() {
 		System.out.println("Insert factors for quadratic equation");
 		System.out.println("f(x) = a * x^2 + b * x + c");
 		System.out.print("Insert a factor: ");
@@ -66,24 +127,24 @@ public class Precision {
 		System.out.println();
 		System.out.println("f(x) = " + a + " * x^2" + " + " + b + " * x" + " + " + c);
 		double delta = Math.pow(b, 2) - 4 * a * c;
+		
 
 		if (delta < 0) {
 			System.out.println("No results");
 		}
 		if (delta == 0) {
-			x = new BigDecimal(-b / 2 * a).setScale(scale,RoundingMode.HALF_UP);
-			
+			x = new BigDecimal(-b / 2 * a).setScale(scale, RoundingMode.HALF_UP);
 			System.out.println("x = " + x);
 		}
-
 		if (delta > 0) {
-			x1 = new BigDecimal(((-b) - delta) / 4 * a).setScale(scale,RoundingMode.HALF_UP);
-			x2 = new BigDecimal(((-b) + delta) / 4 * a).setScale(scale,RoundingMode.HALF_UP);
+			x1 = new BigDecimal(((-b) - delta) / 4 * a).setScale(scale, RoundingMode.HALF_UP);
+			x2 = new BigDecimal(((-b) + delta) / 4 * a).setScale(scale, RoundingMode.HALF_UP);
 			System.out.println("x1 = " + x1);
 			System.out.println("x2 = " + x2);
 		}
 	}
-
+	
+	
 	void sort(int... id) {
 
 		int l = id.length;
@@ -107,9 +168,9 @@ public class Precision {
 		System.out.println();
 
 	}
-
-	public void bubble() {
-
+	
+	public void Bubble() {
+		
 		System.out.println("Input digits from your student ID to get them sorted in ascending order");
 		System.out.print("1:");
 		int a = scanner.nextInt();
@@ -129,7 +190,7 @@ public class Precision {
 		System.out.println("ID number is " + a + "" + b + "" + c + "" + d + "" + e + "" + f + "" + g);
 
 		int[] id = { a, b, c, d, e, f, g };
-		sort(a, b, c, d, e, f, g);
+		sort(id);
 		System.out.println("ID digits after sorting");
 		printarray(id);
 	}
