@@ -51,7 +51,7 @@ public class Precision {
 		        	System.exit(0);
 		        	 break;
 				default:
-					if(select > 4) {
+					if(select > 6) {
 						System.out.println("Wrong option. Try again");
 		    }
 		    }
