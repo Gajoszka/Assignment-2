@@ -21,6 +21,8 @@ public class Precision {
 	public static void main(String[] args) {
 		int select;
 		Precision ob = new Precision();
+		
+		String options = "1 2 3 4 5 6";
 
 		do {
 			System.out.println("This is an application that performs simple tasks. Here is a list of them.");
@@ -30,6 +32,7 @@ public class Precision {
 			}
 		    Scanner scanner = new Scanner(System.in);
 		    select = scanner.nextInt();
+		    options = options.replace(String.valueOf(select),"");
 		    
 		    switch (select) {
 		        case 1:
@@ -48,6 +51,12 @@ public class Precision {
 		        	ob.Bubble();
 		        	break;
 		        case 6:
+		        	if(options == "") {
+		        		System.out.println("");
+		        	} else {
+		        	System.out.println("These options haven't been used");
+		        	System.out.println(options);
+		        	}
 		        	System.out.println("Closing the program");
 		        	System.exit(0);
 		        	 break;
@@ -56,7 +65,6 @@ public class Precision {
 						System.out.println("Wrong option. Try again");
 		    }
 		    }
-		    //If a part of the program has not been implemented, the program should display a short message, e.g. "Function not implemented choose from other options".
 		} while (select > 0);
 	}
 	
@@ -130,28 +138,30 @@ public class Precision {
 		double b = scanner.nextDouble();
 		System.out.print("Insert c factor: ");
 		double c = scanner.nextDouble();
-		System.out.println("Insert calue of f(x)");
-		double f = scanner.nextDouble();
-		System.out.println(f + " = " + a + " * x^2" + " + " + b + " * x" + " + " + c);
-		
-		if(a == 0) {
-			System.out.println(f + " = " + b + " * x + " + c);
-			m = new BigDecimal((f - c) / b).setScale(scale, RoundingMode.HALF_UP);
-			System.out.println("x = " + m);
-		}
+		System.out.println("f(x) = " + a + " * x^2" + " + " + b + " * x" + " + " + c);
 		
 		double delta = Math.pow(b, 2) - 4 * a * c;
 		
+		while(a != 0) {
 		if (delta < 0) {
+			System.out.println("Delta = " + delta);
 			System.out.println("No results");
 		} else if (delta == 0) {
+			System.out.println("Delta = " + delta);
 			x = new BigDecimal(-b / 2 * a).setScale(scale, RoundingMode.HALF_UP);
 			System.out.println("x = " + x);
 		} else {
-			x1 = new BigDecimal(((-b) - delta) / 4 * a).setScale(scale, RoundingMode.HALF_UP);
-			x2 = new BigDecimal(((-b) + delta) / 4 * a).setScale(scale, RoundingMode.HALF_UP);
+			System.out.println("Delta = " + delta);
+			double delta1 = Math.sqrt(delta);
+			x1 = new BigDecimal(((-b) - delta1) / 4 * a).setScale(scale, RoundingMode.HALF_UP);
+			x2 = new BigDecimal(((-b) + delta1) / 4 * a).setScale(scale, RoundingMode.HALF_UP);
 			System.out.println("x1 = " + x1);
 			System.out.println("x2 = " + x2);
+		}
+		}
+		
+		if(a == 0) {
+			System.out.println("This is not quadratic equation");
 		}
 	}
 	
