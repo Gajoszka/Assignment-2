@@ -15,26 +15,10 @@ public class Precision {
 	BigDecimal n;
 	
 	Integer scale = null;
-
-	@SuppressWarnings("resource")
-	public Scanner scanner = new Scanner(System.in);
-	public BigDecimal x;
-	public BigDecimal x1;
-	public BigDecimal x2;
-	public BigDecimal y;
-	public BigDecimal z;
-	public BigDecimal n;
 	int select;
-	int scale;
 
 	@SuppressWarnings("resource")
 	public static void main(String[] args) {
-		
-		Menu ob = new Menu();
-		ob.Menuu();
-	}
-	
-	void Menuu() {
  		
 		String options = "1 2 3 4 5 6";
 		Menu ob = new Menu();
@@ -100,7 +84,7 @@ public class Precision {
 		double b = scanner.nextDouble();
 		System.out.println("Input c factor");
 		double c = scanner.nextDouble();
-		System.out.println(a + "*x" + " + " + b + "*y" + " = " + c);
+		System.out.println(a + "*x" + " + " + b + " = " + c);
 		
 		n = new BigDecimal((c - b)/a)
 		if(scale != null) {
