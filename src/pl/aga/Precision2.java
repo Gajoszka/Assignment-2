@@ -178,6 +178,7 @@ public class Precision2 {
 			System.out.print(id[x] + " ");
 		}
 		System.out.println();
+		
 	}
 
 	void bubble() {
