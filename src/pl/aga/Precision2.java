@@ -79,7 +79,7 @@ public class Precision2 {
 		System.out.println("Input \"c\" factor");
 		double c = scanner.nextDouble();
 		System.out.println(a + "*x" + " + " + b + " = " + c);
-		double n = round((c - b) / a, scale);
+		BigDecimal n = round((c - b) / a, scale);
 		System.out.println("x = " + n);
 		wait2();
 	}
@@ -111,9 +111,9 @@ public class Precision2 {
 		}
 
 		if (w != 0) {
-			double z = round((c * e - b * f) / w, scale);
-			double y = round((a * f - d * c) / w, scale);
-			System.out.println("x = " + z);
+			BigDecimal x = round((c * e - b * f) / w, scale);
+			BigDecimal y = round((a * f - d * c) / w, scale);
+			System.out.println("x = " + x);
 			System.out.println("y = " + y);
 		} else {
 			System.out.println("No results");
@@ -146,12 +146,12 @@ public class Precision2 {
 		} else {
 			System.out.println("Results:");
 			if (delta == 0) {
-				double x = round(-b / (2 * a), scale);
+				BigDecimal x = round(-b / (2 * a), scale);
 				System.out.println("x = " + x);
 			} else {
 				double delta1 = Math.sqrt(delta);
-				double x1 = round(((-b) - delta1) / (4 * a), scale);
-				double x2 = round(((-b) + delta1) / (4 * a), scale);
+				BigDecimal x1 = round(((-b) - delta1) / (4 * a), scale);
+				BigDecimal x2 = round(((-b) + delta1) / (4 * a), scale);
 				System.out.println("x1 = " + x1);
 				System.out.println("x2 = " + x2);
 			}
@@ -206,10 +206,11 @@ public class Precision2 {
 		wait2();
 	}
 
-	private double round(double value, Integer scale) {
-		if (scale == null)
-			return value;
-		return new BigDecimal(value).setScale(scale, RoundingMode.HALF_UP).doubleValue();
+	private BigDecimal round(double value, Integer scale) {
+		BigDecimal d = new BigDecimal(value);
+		if (scale != null)
+			return d.setScale(scale, RoundingMode.HALF_UP);
+		return d;
 	}
 
 	int printMenu(String[] menu) {
