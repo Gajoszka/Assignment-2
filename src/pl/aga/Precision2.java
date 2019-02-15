@@ -68,12 +68,13 @@ public class Precision2 {
 	}
 
 	void unknown() {
+		printSeparator(lineSize);
 		System.out.println("a*x + b = c");
-		System.out.println("Input a factor");
+		System.out.println("Input \"a\" factor");
 		double a = scanner.nextDouble();
-		System.out.println("Input b factor");
+		System.out.println("Input \"b\" factor");
 		double b = scanner.nextDouble();
-		System.out.println("Input c factor");
+		System.out.println("Input \"c\" factor");
 		double c = scanner.nextDouble();
 		System.out.println(a + "*x" + " + " + b + " = " + c);
 		double n = round((c - b) / a, scale);
@@ -85,17 +86,17 @@ public class Precision2 {
 		printSeparator(lineSize);
 		System.out.println("a*x + b*y = c");
 		System.out.println("d*x + e*y = f");
-		System.out.println("Input a factor");
+		System.out.println("Input \"a\" factor");
 		double a = scanner.nextDouble();
-		System.out.println("Input b factor");
+		System.out.println("Input \"b\" factor");
 		double b = scanner.nextDouble();
-		System.out.println("Input c factor");
+		System.out.println("Input \"c\" factor");
 		double c = scanner.nextDouble();
-		System.out.println("Input d factor");
+		System.out.println("Input \"d\" factor");
 		double d = scanner.nextDouble();
-		System.out.println("Input e factor");
+		System.out.println("Input \"e\" factor");
 		double e = scanner.nextDouble();
-		System.out.println("Input f factor");
+		System.out.println("Input \"f\" factor");
 		double f = scanner.nextDouble();
 		System.out.println();
 		System.out.println(a + "*x" + " + " + b + "*y" + " = " + c);
@@ -115,7 +116,6 @@ public class Precision2 {
 		} else {
 			System.out.println("No results");
 		}
-		printSeparator(lineSize);
 		wait2();
 	}
 
@@ -125,15 +125,15 @@ public class Precision2 {
 		System.out.println("f(x) = a * x^2 + b * x + c");
 		double a = 0;
 		while (a == 0) {
-			System.out.print("Insert a factor: ");
+			System.out.print("Insert \"a\" factor: ");
 			a = scanner.nextDouble();
 			if (a == 0) {
 				System.out.println("-----This is not quadratic equation----- ");
 			}
 		}
-		System.out.print("Insert b factor: ");
+		System.out.print("Insert \"b\" factor: ");
 		double b = scanner.nextDouble();
-		System.out.print("Insert c factor: ");
+		System.out.print("Insert \"c\" factor: ");
 		double c = scanner.nextDouble();
 		System.out.println("\nf(x) = " + a + " * x^2" + " + " + b + " * x" + " + " + c);
 
@@ -154,7 +154,6 @@ public class Precision2 {
 				System.out.println("x2 = " + x2);
 			}
 		}
-		printSeparator(lineSize);
 		wait2();
 	}
 
@@ -181,27 +180,27 @@ public class Precision2 {
 
 	void bubble() {
 		printSeparator(lineSize);
+		int count = 0;
+		while (count <= 0 || count > 10) {
+			System.out.println("Input students count (1-10):");
+			count = scanner.nextInt();
+		}
 		System.out.println("Input digits from your student ID to get them sorted in ascending order");
-		System.out.print("1:");
-		int a = scanner.nextInt();
-		System.out.print("2:");
-		int b = scanner.nextInt();
-		System.out.print("3:");
-		int c = scanner.nextInt();
-		System.out.print("4:");
-		int d = scanner.nextInt();
-		System.out.print("5:");
-		int e = scanner.nextInt();
-		System.out.print("6:");
-		int f = scanner.nextInt();
-		System.out.print("7:");
-		int g = scanner.nextInt();
-		System.out.println("ID number is " + a + "" + b + "" + c + "" + d + "" + e + "" + f + "" + g);
-		int[] id = { a, b, c, d, e, f, g };
+		int[] id = new int[count];
+		for (int i = 0; i < count; i++) {
+			System.out.print((i + 1) + ": ");
+			id[i] = scanner.nextInt();
+		}
+		printSeparator(lineSize);
+		System.out.println("ID number is ");
+		for (int i = 0; i < count; i++) {
+			System.out.print(id[i] + ", ");
+		}
+		System.out.println();
+		printSeparator(lineSize);
 		sort(id);
 		System.out.println("ID digits after sorting");
 		printArray(id);
-		printSeparator(lineSize);
 		wait2();
 	}
 
@@ -213,7 +212,7 @@ public class Precision2 {
 
 	int printMenu(String[] menu) {
 		printSeparator(lineSize);
-		printLine("This is an application that performs simple tasks. Here is a list of them. ",lineSize);
+		printLine("This is an application that performs simple tasks. Here is a list of them. ", lineSize);
 		printSeparator(lineSize);
 		for (String x : menu) {
 			printLine(x, lineSize);
@@ -225,7 +224,7 @@ public class Precision2 {
 	void printLine(String line, int size) {
 		System.out.print("|  ");
 		System.out.print(line);
-		for (int i =  line.length(); i < size-3; i++)
+		for (int i = line.length(); i < size - 3; i++)
 			System.out.print(" ");
 		System.out.println("|");
 
@@ -240,7 +239,9 @@ public class Precision2 {
 	}
 
 	private void wait2() {
-		System.out.println("\n Press ENTER\n");
+		printSeparator(lineSize);
+		printLine("            Press ENTER to continue", lineSize);
+		printSeparator(lineSize);
 		try {
 			System.in.read();
 		} catch (IOException e) {
