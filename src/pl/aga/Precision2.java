@@ -60,9 +60,11 @@ public class Precision2 {
 	public void accuracy() {
 		printSeparator(lineSize);
 		System.out.println("Choose number of decimal places of the result of equation from 1 to 5");
-		scale = scanner.nextInt();
-		if (scale > 5) {
-			System.out.println("Wrong option");
+		while (scale == null || scale < 1 || scale > 5) {
+			scale = scanner.nextInt();
+			if (scale > 5) {
+				System.out.println("Wrong option");
+			}
 		}
 		printSeparator(lineSize);
 	}
@@ -218,7 +220,11 @@ public class Precision2 {
 			printLine(x, lineSize);
 		}
 		printSeparator(lineSize);
-		return scanner.nextInt();
+		int select = 0;
+		while (select < 1 || select > menu.length) {
+			select = scanner.nextInt();
+		}
+		return select;
 	}
 
 	void printLine(String line, int size) {
