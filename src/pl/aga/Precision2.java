@@ -183,9 +183,11 @@ public class Precision2 {
 	void bubble() {
 		printSeparator(lineSize);
 		int count = 0;
-		while (count <= 0 || count > 10) {
-			System.out.println("Input students count (1-10):");
+		while (count <= 0 || count > 7) {
+			System.out.println("Input students count (1-7):");
 			count = scanner.nextInt();
+			if(count >7 || count <= 0) {
+				System.out.println("Wrong option.Try again");}
 		}
 		System.out.println("Input digits from your student ID to get them sorted in ascending order");
 		int[] id = new int[count];
