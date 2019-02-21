@@ -18,7 +18,7 @@ public class Equations extends Assignment2 {
 		wait2();
 	}
 
-	public static void unknown() {
+	public static BigDecimal unknown() {
 		printSeparator(lineSize);
 		System.out.println("a*x + b = c");
 		System.out.println("Input \"a\" factor");
@@ -31,6 +31,7 @@ public class Equations extends Assignment2 {
 		BigDecimal n = round((c - b) / a, scale);//using round method
 		System.out.println("x = " + n);
 		wait2();
+		return n;
 	}
 
 	public static void unknowkns() {
@@ -49,16 +50,13 @@ public class Equations extends Assignment2 {
 		double e = scanner.nextDouble();
 		System.out.println("Input \"f\" factor");
 		double f = scanner.nextDouble();
-		System.out.println();
 		System.out.println(a + "*x" + " + " + b + "*y" + " = " + c);
 		System.out.println(d + "*x" + " + " + e + "*y" + " = " + f);
 
 		double w = (a * e - b * d);//counting determinant
-
 		if (a == 0 && b == 0 && c == 0 && d == 0 && e == 0 && f == 0) {//unreal equation
 			System.out.println("Such equation doesn't exist");
 		}
-
 		if (w != 0) {
 			BigDecimal x = round((c * e - b * f) / w, scale);//counting other determinants
 			BigDecimal y = round((a * f - d * c) / w, scale);
@@ -87,7 +85,6 @@ public class Equations extends Assignment2 {
 		System.out.print("Insert \"c\" factor: ");
 		double c = scanner.nextDouble();
 		System.out.println("\nf(x) = " + a + " * x^2" + " + " + b + " * x" + " + " + c);
-
 		double delta = Math.pow(b, 2) - 4 * a * c;//counting delta
 		System.out.println("\nDelta = " + delta);
 		if (delta < 0) {//checking number of results
@@ -108,7 +105,7 @@ public class Equations extends Assignment2 {
 		Assignment2.wait2();
 	}
 	
-	private static BigDecimal round(double value, Integer scale) {
+	static BigDecimal round(double value, Integer scale) {
 		BigDecimal d = new BigDecimal(value);
 		if (scale != null)
 			return d.setScale(scale, RoundingMode.HALF_UP);//setting decimal places to equation results
